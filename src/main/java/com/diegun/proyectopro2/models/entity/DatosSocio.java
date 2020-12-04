@@ -1,19 +1,25 @@
-package com.diegun.proyectopro2;
+package com.diegun.proyectopro2.models.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Max;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+
 @Entity
-@Table(name="datossociodemo")
+@Table(name = "datospersonales")
 public class DatosSocio implements Serializable {// serial version id ,siempre debe ir
 
     /**
@@ -30,40 +36,30 @@ public class DatosSocio implements Serializable {// serial version id ,siempre d
     @NotEmpty(message = "el nombre no puede quedar vacio")
     @Size(min =20, max = 30, message = "debe escribir mas de 25 caracteres")
     private String nombre; // p1
-
+    
+    @NotEmpty(message = "el No documento no puede quedar vacio")
     private int cedulanum; //  p3
     private String tipoDoc;
     private String genero; //variable p4
+    @NotEmpty(message = "el télefono no puede quedar vacio")
     private int telefono;// p5 variable 3
+    @NotEmpty(message = "el Estado civil no puede quedar vacio")
     private String estadoCivil; //p6
-    private String nivelEducativo; ///p7
+    @Max(value= 5, message = "digite el estrato de 1 a 5")
     private String estrato; //p8
-    private String regimenSalud; //p9
-    private String zonaResidencia; //p10
     private String direccion; //p11
     private String estudiaActual; //p12
-    private String trabajaActual; //
-    private String tieneHijos; //p13
-    private String dependenciaPadres; //p14
+
+    @CreationTimestamp// muestra la fecha de creacion
+    private Date created;
+
+
+    @UpdateTimestamp//actualiza a la ultima fecha de actualizacion
+    private Date updated;
+
+
     
-    //segunda parte tamizaje
-    
-    private double peso; // pero en kg variable 4
-    private double altura; // en mts
-    private double resultadoImc; //variable 5
-    private String interpretacionImc;
-    private String descripcionImc;
-    
-    private double perAbdominal; // en cms variable 6 aproximar
-    private double tensionArterial; //  aproximar
-    private String ejercicioDiario; //variable 7
-    private String consumoVerduras; //variable 8
-    private String tieneHtensionArt;
-    private String tomaMedicamentos; //var 9
-    private String nivelAzucar; //var 10
-    private String familiarDiabetes; //var 11
-    private String diabetico; //var 12
-    private String fuma; //var 13
+
 
 
     
